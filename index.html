@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vico Bitácora</title>
+
+  <!-- Fuente Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Tipografía general */
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Menú de navegación */
+    nav {
+      background-color: #ff80b5;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 15px 0;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffe1f0;
+    }
+
+    /* Espaciado de secciones */
+    section {
+      padding: 50px 20px;
+    }
+
+     /* Fondo con efecto Parallax */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #333;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80')
+        no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Capa semitransparente sobre el fondo */
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.8);
+      min-height: 100vh;
+      padding: 50px 20px;
+    }
+
+
+
+    /* Sección Bienvenida con animaciones */
+    #Bienvenida {
+      padding-top: 100px;
+      background-image: url("img/FONDO BIENVENIDA.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animación de partículas de fondo */
+    #Bienvenida::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255, 128, 181, 0.2), rgba(255, 20, 147, 0.2));
+      z-index: 1;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* Contenido de bienvenida */
+    .welcome-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    /* Animación del título principal */
+    .welcome-title {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.5s ease forwards 0.5s;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Animación del subtítulo */
+    .welcome-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.5s ease forwards 1s;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Animación del botón */
+    .welcome-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: rgba(255, 20, 147, 0.8);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.5s ease forwards 1.5s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .welcome-btn:hover {
+      background-color: rgba(255, 20, 147, 1);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Animación de scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2s;
+    }
+
+    .scroll-indicator span {
+      display: block;
+      width: 24px;
+      height: 24px;
+      border-bottom: 2px solid white;
+      border-right: 2px solid white;
+      transform: rotate(45deg);
+      margin: -10px;
+      animation: scrollDown 2s infinite;
+    }
+
+    .scroll-indicator span:nth-child(2) {
+      animation-delay: -0.2s;
+    }
+
+    .scroll-indicator span:nth-child(3) {
+      animation-delay: -0.4s;
+    }
+
+    @keyframes scrollDown {
+      0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-10px, -10px);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(10px, 10px);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Header */
+    header {
+      background-color: deeppink;
+      text-align: center;
+      margin-bottom: 50px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header p {
+      font-size: 120px;
+      color: white;
+      margin: 0;
+      font-weight: bold;
+    }
+    
+    /* Rectángulos negros */
+    .rectangulo {
+      width: 90%;
+      background-color: black;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .rectangulo span {
+      color: hotpink;
+      font-size: 20px;
+    }
+
+    /* Contenedor hipertexto */
+    .contenedor-hipertexto {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+      margin: 20px 40px;
+      flex-wrap: wrap;
+    }
+
+    .recuadro-rosa {
+      width: 300px;
+      height: 200px;
+      background-color: deeppink;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
+
+    .titulo-recuadro {
+      font-size: 50px;
+      color: black;
+      margin: 0;
+      text-align: center;
+    }
+
+    .texto-explicativo, .texto {
+      max-width: 800px;
+    }
+
+    .texto-explicativo p, .texto p {
+      font-size: 18px;
+      text-align: justify;
+      margin: 0;
+    }
+
+    /* Contenedor secciones */
+    .contenedor-secciones {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Recuadros */
+    .recuadro-actividad, .recuadro-shortcuts, .recuadro-negro, .recuadro-rosa-bocetos, .recuadro-rosa-joan {
+      width: 500px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 35px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .recuadro-actividad { background-color: black; color: deeppink; }
+    .recuadro-shortcuts { background-color: deeppink; color: white; }
+    .recuadro-negro { background-color: black; color: hotpink; }
+    .recuadro-rosa-bocetos { background: linear-gradient(90deg, hotpink, deeppink); color: black; margin: 0 auto; }
+    .recuadro-rosa-joan { background-color: deeppink; color: black; margin: 0 auto; }
+
+    /* Imágenes */
+    .seccion img, .img-joan {
+      margin-top: 10px;
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .img-joan {
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #111;
+      color: white;
+      padding: 20px 0;
+      margin-top: 40px;
+      width: 100%;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .footer-container p { margin: 0; font-size: 14px; letter-spacing: 1px; }
+
+    /* Sección favicon */
+    .seccion-favicon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .recuadro-negro {
+      background-color: #000;
+      color: #ff69b4;
+      text-align: center;
+      padding: 80px 20px;
+      border-radius: 12px;
+      width: 45%;
+    }
+
+    .recuadro-negro h2 { font-size: 32px; font-weight: 600; margin: 0; }
+
+    .imagen-favicon {
+      width: 45%;
+      height: auto;
+    }
+
+    .imagen-favicon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+      header { height: 200px; }
+      header p { font-size: 60px; }
+      nav ul { flex-wrap: wrap; gap: 15px; }
+      .recuadro-actividad, .recuadro-shortcuts, .recuadro-negro, 
+      .recuadro-rosa-bocetos, .recuadro-rosa-joan { width: 100%; font-size: 25px; }
+      .titulo-recuadro { font-size: 35px; }
+      .seccion-favicon { flex-direction: column; }
+      .recuadro-negro, .imagen-favicon { width: 90%; }
+      .welcome-title { font-size: 2.5rem; }
+      .welcome-subtitle { font-size: 1.2rem; }
+    }
+
+    /* Sección con fondo y overlay */
+    .fondo-seccion {
+      position: relative;
+      background-image: url('img/diseno.jpg');
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .fondo-seccion .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(159, 101, 130, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      z-index: 1;
+    }
+
+    .fondo-seccion .overlay h2,
+    .fondo-seccion .overlay p {
+      position: relative;
+      z-index: 2;
+      margin: 10px 0;
+    }
+
+    .imagenes-verticales {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .imagenes-verticales img {
+      width: 80%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      object-fit: cover;
+    }
+
+    .rectangulo-rosa-ancho {
+      width: 100%;
+      max-width: 1600px;
+      height: auto;
+      background-color: deeppink;
+      color: rgb(0, 0, 0);
+      font-family: 'Open Sans', sans-serif; 
+      font-size: 30px;
+      font-weight: 600;
+      text-align: center;
+      padding: 15px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .img-figma {
+      display: block;
+      margin: 0 auto;
+      max-width: 90%;
+      height: auto;
+    }
+
+    /* SECCIÓN DEL VIDEO */
+    #video-seccion {
+      background-color: #fafafa;
+      padding: 60px 20px;
+      border-top: 2px solid #ddd;
+    }
+
+    #video-seccion h2 {
+      font-size: 2rem;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    #video-seccion p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .video-muestra {
+      width: 80%;
+      max-width: 800px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .dato {
+      font-size: 1.1rem;
+    }
+
+    .contacto-form {
+      background: white;
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #f0f0f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      font-family: 'Fredoka', sans-serif;
+      background: #fafafa;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #000;
+      background: white;
+    }
+
+    .btn-enviar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-enviar svg {
+  transition: transform 0.3s ease;
+}
+
+.btn-enviar:hover svg {
+  transform: translateX(4px);
+  background: #ff048e;
+
+}
+  
+    /* Footer */
+    footer {
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .rectangulo-rosa {
+        width: 800px;
+        height: 500px;
+        right: -400px;
+        opacity: 0.7;
+      }
+
+      .sobre-content,
+      .contacto-content {
+        grid-template-columns: 1fr;
+      }
+
+      .servicios-grid,
+      .tarifas-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .galeria-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .marcas-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      section {
+        padding: 4rem 0;
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .rectangulo-rosa {
+        width: 600px;
+        height: 400px;
+        right: -300px;
+        opacity: 0.5;
+      }
+
+      .hero-image img {
+        height: 400px;
+      }
+    }
+
+    :root{--bg:#111;--panel:#fff;--muted:#666;--accent:rgb(251, 28, 121);--danger:#e73}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;margin:0;padding:0}
+    .cookie-banner{position:fixed;left:1rem;right:1rem;bottom:1rem;background:var(--panel);box-shadow:0 8px 24px rgba(2,6,23,.15);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:center;z-index:9999}
+    .cookie-info{flex:1;min-width:0}
+    .cookie-title{font-weight:700;margin:0 0 4px 0}
+    .cookie-desc{margin:0;color:var(--muted);font-size:14px}
+    .cookie-actions{display:flex;gap:8px;align-items:center}
+    button{font:inherit;padding:8px 12px;border-radius:8px;border:1px solid transparent;cursor:pointer}
+    .btn-primary{background:var(--accent);color:#052018;border-color:rgba(0,0,0,.06)}
+    .btn-secondary{background:transparent;border:1px solid #e6e6e6}
+    .btn-danger{background:var(--danger);color:white}
+    .cookie-settings-btn{position:fixed;right:1rem;bottom:1rem;background:#fff;border:1px solid #ddd;padding:8px;border-radius:999px;box-shadow:0 6px 18px rgba(2,6,23,.08);z-index:9998}
+    /* modal */
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:10000}
+    .overlay.open{display:flex}
+    .modal{background:#fff;border-radius:12px;padding:20px;max-width:520px;width:94%;box-shadow:0 12px 40px rgba(2,6,23,.25)}
+    .pref-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f1f1f1}
+    .pref-row:last-child{border-bottom:0}
+    .pref-desc{color:var(--muted);font-size:13px}
+    .switch{width:46px;height:26px;background:#e9e9e9;border-radius:26px;position:relative;cursor:pointer}
+    .switch > .knob{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:all .18s}
+    .switch.on{background:var(--accent)}
+    .switch.on > .knob{left:23px}
+    @media (max-width:520px){.cookie-banner{flex-direction:column;align-items:stretch}}
+
+    .filtro1 {
+  filter: brightness(1.1) contrast(1.2); /* Más brillante y con contraste */
+}
+
+.filtro2 {
+  filter: sepia(0.4) saturate(1.3); /* Tono cálido y más color */
+}
+
+.filtro3 {
+  filter: grayscale(0.5) contrast(1.1); /* Blanco y negro parcial */
+}
+
+.filtro4 {
+  filter: hue-rotate(20deg) saturate(1.4); /* Leve cambio de tono */
+}
+
+.filtro5 {
+  filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.5)); /* Sombra rosada */
+}
+
+   
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="#Bienvenida">Bienvenida</a></li>
+      <li><a href="#Bitacora">Bitácora</a></li>
+      <li><a href="#Antecedentes">Antecedentes</a></li>
+      <li><a href="#Actividad conceptos">Actividad conceptos</a></li>
+      <li><a href="#Shortcuts">Shortcuts</a></li>
+      <li><a href="#Figma">Figma</a></li>
+      <li><a href="#Diagrama de arquitectura">Diagrama de arquitectura</a></li>
+      <li><a href="#Diagrama de flujo">Diagrama de flujo</a></li>
+      <li><a href="#IA">IA</a></li>
+      <li><a href="#Diagrama estructura">Diagrama estructura</a></li>
+      <li><a href="#Bocetos">Bocetos</a></li>
+    </ul>
+  </nav>
+
+  <section id="Bienvenida">
+    <div class="particles" id="particles"></div>
+    <div class="welcome-content">
+      <h1 class="welcome-title">Bienvenido a mi Página Web</h1>
+      <p class="welcome-subtitle">No es mucho, pero es trabajo honesto :C</p>
+      <a href="#Bitacora" class="welcome-btn">Explorar Bitácora</a>
+    </div>
+    <div class="scroll-indicator">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+  <header id="Bitacora">
+    <p>BITÁCORA</p>
+  </header> 
+
+  <div class="rectangulo">
+    <span><strong>Nombre:</strong> Victoria Payán García</span>
+    <span><strong>Matrícula:</strong> 215662</span>
+    <span><strong>Materia:</strong> Diseño Web</span>
+    <span><strong>Grupo:</strong> BL1</span>
+    <span><strong>Fecha:</strong> 10/09/25</span>
+  </div>
+
+  <section id="Antecedentes" style="padding-top: 20px; padding-bottom: 20px;"> 
+    <div class="rectangulo" style="margin-top: 0; margin-bottom: 20px;">
+      <span><strong>ANTECEDENTES DEL DISEÑO WEB</strong></span>
+    </div>
+
+    <div class="contenedor-hipertexto">
+      <div class="recuadro-rosa">
+        <p class="titulo-recuadro">Hipertexto</p>
+      </div>
+      <div class="texto">
+        <p>
+          El hipertexto es texto que contiene enlaces a otros textos, tratandose asi de una estructura no secuencial 
+          que permite crear, agregar, enlazar y compartir informacion de diversas fuentes por medio de enlaces asociativos 
+          y redes sociales. Si el usuario selecciona un hipervinculo, el programa muestra el documento enlazado.
+        </p>
+      </div>
+    </div>
+
+    <div class="contenedor-hipertexto">
+      <div class="recuadro-rosa">
+        <p class="titulo-recuadro">Prototipado</p>
+      </div>
+      <div class="texto">
+        <p>
+          Se define como una tecnica industrial en donde se crea un modelo tomando como referencia un producto 
+          para analizar su funcionalidad una vez este materializado. Se trata de un proceso planificado en el que 
+          se toman en cuenta distintos factores para determinar la utilidad y eficacia de un artículo. 
+          Esto se efectúa antes de que llegue a la fase de produccion final.
+        </p>
+      </div>
+    </div>
+
+    <div class="contenedor-hipertexto">
+      <div class="recuadro-rosa">
+        <p class="titulo-recuadro">UX</p>
+      </div>
+      <div class="texto">
+        <p>
+          UX (User Experience o Experiencia de Usuario) se refiere a la percepcion y respuesta 
+          que tiene una persona al interactuar con un producto, sistema o servicio. 
+          Incluye aspectos de usabilidad, accesibilidad y diseño que buscan garantizar 
+          que la experiencia sea eficiente, satisfactoria y significativa para el usuario.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="Actividades-Shortcuts" style="padding-top: 20px;">
+    <div class="contenedor-secciones">
+      <div id="Actividad conceptos" class="seccion" style="padding: 0;">
+        <div class="recuadro-actividad">Actividad conceptos</div>
+        <img src="img/Conceptos.jpg" alt="Imagen Actividad" class="img-actividad">
+      </div>
+      <div id="Shortcuts" class="seccion" style="padding: 0;">
+        <div class="recuadro-shortcuts">Shortcuts</div>
+        <img src="img/ShortcutsMac.png" alt="Imagen Shortcuts" class="img-shortcuts">
+      </div>
+    </div>
+  </section>
+
+
+  <section id="Figma">
+    <div class="recuadro-shortcuts">Figma</div>
+    <img src="img/figma.png" alt="Imagen Figma" class="img-figma">
+  </section>
+
+  <section id="Diagrama de arquitectura">
+    <div class="recuadro-shortcuts">Diagrama de Arquitectura de pagina web</div>
+    <div style="text-align: center;">
+      <img src="img/SHEIN.jpg" alt="Diagrama Arquitectura" class="img-diagrama" style="margin-top: 20px; max-width: 90%; height: auto;">
+    </div>
+  </section>
+
+  <section id="Diagrama de flujo">
+    <div class="recuadro-shortcuts">Diagrama de flujo</div>
+    <div style="text-align: center;">
+      <img src="img/Cuadro.jpg" alt="Imagen nueva centrada" 
+           style="max-width: 1000px; height: auto; object-fit: cover; margin-top: 20px;">
+    </div>
+  </section>
+  
+  <section id="IA">
+    <div class="rectangulo">
+      <span><strong>Tema de la IA</strong></span>
+    </div>
+    
+    <div class="contenedor-secciones" style="justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 0;">
+      <img src="img/FlowChart.png" alt="Imagen 1" style="object-fit: cover; max-width: 45%;">
+      <img src="img/RevistaIA.png" alt="Imagen 2" style="object-fit: cover; max-width: 45%;">
+    </div>
+    
+    <div class="contenedor-hipertexto" style="justify-content: center; margin-top: 20px; margin-left: 0; margin-right: 0;">
+      <div class="texto-explicativo" style="max-width: 800px; text-align: justify;">
+        <p>
+          Nuestro equipo llego a la conclusion de que la Inteligencia Artificial no puede ser una artista, ni puede reemplazarnos como diseñadores graficos porque nosotros como humanos, comprendemos emociones, cultura, tendencias y significados que una IA no siempre puede captar y que no logra transmitir. Podemos usar y adaptarnos a la Inteligencia Artificial como una herramienta, pero nunca podra hacer en su totalidad el trabajo de un artista o de un diseñador.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="Diagrama estructura">
+    <div class="rectangulo">
+      <span><strong>Diagrama estructura</strong></span>
+    </div>
+    <div style="text-align: center;">
+      <img src="img/Diagrama.jpg" alt="Imagen diagrama" style="max-width: 1000px; height: auto; object-fit: cover;">
+    </div>
+  </section>
+
+  <section id="Bocetos">
+    <div class="recuadro-rosa-bocetos">BOCETOS</div>
+    <div class="contenedor-secciones" style="justify-content: center; gap: 20px; flex-wrap: wrap;">
+      <img src="img/Boceto 1.jpeg" alt="Imagen 1" style="max-width: 400px; height: auto; object-fit: cover;">
+      <img src="img/boceto 2.jpeg" alt="Imagen 2" style="max-width: 400px; height: auto; object-fit: cover;">
+      <img src="img/boceto 3.jpeg" alt="Imagen 3" style="max-width: 400px; height: auto; object-fit: cover;">
+    </div>
+  </section>
+
+  <section id="BocetosFinos">
+    <div class="recuadro-negro">BOCETOS FINOS</div>
+    <div class="contenedor-secciones" style="justify-content: center; gap: 20px; flex-wrap: wrap;">
+      <img src="img/1.jpg" alt="Imagen 1" style="object-fit: cover; max-width: 45%;">
+      <img src="img/2.jpg" alt="Imagen 2" style="object-fit: cover; max-width: 45%;">
+    </div>
+  </section>
+
+  <section id="GraficoJoanAcosta">
+    <div class="recuadro-rosa-joan">GRAFICO DE JOAN ACOSTA</div>
+    <div style="text-align: center; margin-top: 20px;">
+      <img src="img/Grafico.png" alt="Gráfico de Joan Acosta" class="img-joan">
+    </div>
+  </section>
+
+  <section class="seccion-favicon" id="Favicon" style="padding-top: 0;">
+    <div class="recuadro-negro">
+      <h2>Retícula de favicon</h2>
+    </div>
+    <div class="imagen-favicon">
+      <img src="img/logo vico.jpg" alt="Retícula de favicon">
+    </div>
+  </section>
+
+  <section id="NuevaSeccion" class="fondo-seccion" style="padding: 0;">
+    <div class="overlay">
+      <h2>STATIC/FIXED/STICKY</h2>
+      <p>Conceptos y definiciones.</p>
+    </div>
+  </section>
+
+  <section id="SeccionImagenes" style="padding: 50px 20px; background-color: #f2f2f2;">
+    <h2 style="text-align: center; margin-bottom: 50px;">DEFINICIONES</h2>
+    <div class="imagenes-verticales">
+      <img src="img/Static.png" alt="Imagen 1">
+      <img src="img/Fixed.png" alt="Imagen 2">
+      <img src="img/Sticky.png" alt="Imagen 3">
+    </div>
+  </section>
+
+  <section id="PrototipadoAltaFidelidad" style="padding-top: 10px; padding-bottom: 30px; display: flex; flex-direction: column; align-items: center;">
+    <div class="rectangulo-rosa-ancho" 
+      style="background-color: #ff3e8b; color: white; font-weight: bold; padding: 15px 40px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+      PROTOTIPADO DE ALTA FIDELIDAD
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 20px 0; margin-top: 10px; max-width: 1200px; width: 100%;">
+      <img src="img/ALTA FIDELIDAD 1.jpg" alt="Imagen izquierda" style="width: 45%; max-width: 500px; border-radius: 10px;">
+      <img src="img/ALTA FIDELIDAD 2.jpg" alt="Imagen derecha" style="width: 45%; max-width: 500px; border-radius: 10px;">
+    </div>
+  </section>
+
+  <section id="Mockup" style="padding-top: 10px; padding-bottom: 30px; display: flex; flex-direction: column; align-items: center;">
+    <div class="rectangulo-rosa-ancho" 
+      style="background-color: #ff3e8b; color: white; font-weight: bold; padding: 15px 40px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+      MOCKUP
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center; padding: 20px 0; margin-top: 10px;">
+      <img src="img/Mockup.jpg" alt="Mockup" style="max-width: 700px; width: 90%; border-radius: 10px;">
+    </div>
+  </section>
+
+  <section id="FueraDeLaCaja" style="padding-top: 10px; padding-bottom: 30px; display: flex; justify-content: center;">
+    <div class="rectangulo-rosa-ancho" 
+      style="background-color: #ff3e8b; color: white; font-weight: bold; padding: 15px 40px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+      DISEÑO DE PAGINA "Fuera de la caja"
+    </div>
+  </section>
+
+ <section id="PDF" style="padding: 40px 0; display: flex; justify-content: center;">
+  <iframe 
+    src="Archivos/pagina-fuera-de-la-caja.pdf" 
+    width="80%" 
+    height="600px" 
+    style="border: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  </iframe>
+</section>
+
+  <section id="AntesDespues" style="padding: 30px 0; display: flex; justify-content: center;">
+  <div class="rectangulo-rosa-ancho" 
+       style="background-color: #ff3e8b; color: white; font-weight: bold; padding: 15px 40px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+    ANTES/ DESPUÉS
+  </div>
+</section>
+
+<section id="PDF" style="padding: 40px 0; display: flex; justify-content: center;">
+  <iframe 
+    src="archivos/antes-despues-bitacora.pdf" 
+    width="80%" 
+    height="600px" 
+    style="border: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  </iframe>
+
+</section>
+<section id="Página " style="padding-top: 10px; padding-bottom: 30px; display: flex; flex-direction: column; align-items: center;">
+    <div class="rectangulo-rosa-ancho" 
+      style="background-color: #000000; color: rgb(244, 33, 138); font-weight: bold; padding: 15px 40px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+      PÁGINA IA  
+      </section>
+
+  <section id="Antes" style="padding: 15px 0; display: flex; justify-content: center;">
+  <div class="rectangulo-rosa-ancho" 
+       style="background-color: #ff3e8b; color: white; font-weight: bold; padding: 15px 20px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+    ANTES
+  </div>
+</section>
+<div style="display: flex; justify-content: center; align-items: center; padding: 20px 0; margin-top: 10px;">
+      <img src="img/CapturaNuevaPagina.PNG" alt="CapturaPagina" style="max-width: 700px; width: 90%; border-radius: 10px;">
+    </div>
+  </section>
+
+  <section id="Despues" style="padding: 15px 0; display: max; justify-content: center;">
+  <div class="rectangulo-rosa-ancho" 
+       style="background-color: #ff3e8b; color: white; font-weight: bold; padding: 15px 20px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+    DESPUÉS
+
+  </div>
+
+  <!-- VIDEO DE FONDO -->
+  <video autoplay muted loop id="video-fondo">
+    <source src="video/Página IA.mp4" type="video/mp4">
+   
+  </video>
+
+ <section id="COLORES Y COMPETIDORES LINK" style="padding: 15px 0; display: max; justify-content: center;">
+  <div class="rectangulo-rosa-ancho" 
+       style="background-color: hsl(336, 100%, 62%); color: white; font-weight: bold; padding: 15px 20px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+    LINK COLORES Y COMPETIDORES 
+
+    <!-- Espacio para el enlace -->
+  <div style="margin-top: 20px; text-align: center;">
+    <a href="https://www.canva.com/design/DAG1r7xKEjw/MqSau57WjPxYtqJsT62GVg/view?utm_content=DAG1r7xKEjw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc040f469c3" 
+       target="_blank"
+       style="color: #ffffff; text-decoration: none; font-weight: 600; font-family: 'Open Sans', sans-serif; font-size: 1.1rem;">
+       🔗 Ver diseño en Canva
+    </a>
+  </div>
+</section>
+
+<section id="codigos-color" style="padding: 40px 0; background-color: #fff; text-align: center; font-family: 'Open Sans', sans-serif;">
+  <h2 style="color: #333; margin-bottom: 25px;">Códigos de color en Visual Studio Code</h2>
+
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto;">
+    
+    <!-- HEXADECIMAL -->
+    <div style="background-color: #f7f7f7; border-radius: 10px; padding: 20px; width: 280px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <div style="width: 100%; height: 80px; background-color: #3498db; border-radius: 6px; margin-bottom: 10px;"></div>
+      <h3 style="color: #ff3e8b;">Hexadecimales</h3>
+      <p style="font-size: 0.95rem; color: #555;">Se representan con un símbolo <b>#</b> seguido de seis caracteres que combinan números y letras.<br><b>Ejemplo:</b> #3498db</p>
+    </div>
+
+    <!-- KEYWORDS -->
+    <div style="background-color: #f7f7f7; border-radius: 10px; padding: 20px; width: 280px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <div style="width: 100%; height: 80px; background-color: lightgreen; border-radius: 6px; margin-bottom: 10px;"></div>
+      <h3 style="color: #ff3e8b;">Keywords</h3>
+      <p style="font-size: 0.95rem; color: #555;">Usan nombres de colores predefinidos por CSS como <b>red</b>, <b>blue</b>, <b>green</b> o <b>lightgreen</b>.</p>
+    </div>
+
+    <!-- RGB -->
+    <div style="background-color: #f7f7f7; border-radius: 10px; padding: 20px; width: 280px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <div style="width: 100%; height: 80px; background-color: rgb(255, 99, 71); border-radius: 6px; margin-bottom: 10px;"></div>
+      <h3 style="color: #ff3e8b;">RGB</h3>
+      <p style="font-size: 0.95rem; color: #555;">Define los colores según la cantidad de rojo, verde y azul.<br><b>Ejemplo:</b> rgb(255, 99, 71)</p>
+    </div>
+
+    <!-- RGBA -->
+    <div style="background-color: #f7f7f7; border-radius: 10px; padding: 20px; width: 280px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <div style="width: 100%; height: 80px; background-color: rgba(255, 99, 71, 0.6); border-radius: 6px; margin-bottom: 10px;"></div>
+      <h3 style="color: #ff3e8b;">RGBA</h3>
+      <p style="font-size: 0.95rem; color: #555;">Similar a RGB, pero con un valor extra (<b>a</b>) para la transparencia.<br><b>Ejemplo:</b> rgba(255, 99, 71, 0.6)</p>
+    </div>
+
+    <!-- HSL -->
+    <div style="background-color: #f7f7f7; border-radius: 10px; padding: 20px; width: 280px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <div style="width: 100%; height: 80px; background-color: hsl(200, 100%, 50%); border-radius: 6px; margin-bottom: 10px;"></div>
+      <h3 style="color: #ff3e8b;">HSL</h3>
+      <p style="font-size: 0.95rem; color: #555;">Usa matiz (<b>hue</b>), saturación y luminosidad.<br><b>Ejemplo:</b> hsl(200, 100%, 50%)</p>
+    </div>
+
+    <!-- HSLA -->
+    <div style="background-color: #f7f7f7; border-radius: 10px; padding: 20px; width: 280px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <div style="width: 100%; height: 80px; background-color: hsla(200, 100%, 50%, 0.5); border-radius: 6px; margin-bottom: 10px;"></div>
+      <h3 style="color: #ff3e8b;">HSLA</h3>
+      <p style="font-size: 0.95rem; color: #555;">Es igual que HSL, pero incluye transparencia con el valor <b>a</b>.<br><b>Ejemplo:</b> hsla(200, 100%, 50%, 0.5)</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Cotizacion -->
+<div style="text-align: center; margin: 20px 0;">
+  <img src="img/COTIZACIÓN - AURA.jpg" alt="Descripción de la imagen" style="max-width: 100%; height: auto;">
+</div>
+
+<section id="COLORES Y COMPETIDORES LINK" style="padding: 15px 0; display: max; justify-content: center;">
+  <div class="rectangulo-rosa-ancho" 
+       style="background-color: hsl(336, 100%, 62%); color: white; font-weight: bold; padding: 15px 20px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+    CAMBIOS Y FILTROS  
+    </div>
+
+    <!--Imagenes con filtro-->
+    <div style="text-align: center; margin: 20px 0;">
+  <img src="img/cambio 1.jpg" alt="Descripción de la imagen" class="filtro1" style="width: 600px; height: auto;">
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+  <img src="img/Cambio 2.jpg" alt="Descripción de la imagen" class="filtro2" style="width: 600px; height: auto;">
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+  <img src="img/cambio 3.jpg" alt="Descripción de la imagen" class="filtro3" style="width: 600px; height: auto;">
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+  <img src="img/Cambio 4.jpg" alt="Descripción de la imagen" class="filtro4" style="width: 600px; height: auto;">
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+  <img src="img/Cambio 5.jpg" alt="Descripción de la imagen" class="filtro5" style="width: 600px; height: auto;">
+</div>
+
+<section id="CAMBIOS BITACORA/ACTUALIZACION" style="padding: 15px 0; display: max; justify-content: center;">
+  <div class="rectangulo-rosa-ancho" 
+       style="background-color: hsl(336, 100%, 62%); color: white; font-weight: bold; padding: 15px 20px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+    CAMBIOS BITACORA/ACTUALIZACION
+
+    <!-- Espacio para el enlace -->
+  <div style="margin-top: 20px; text-align: center;">
+    <a href=https://www.canva.com/design/DAG1r7xKEjw/F6cCjDewCEuwwCCzhXWxRw/edit?utm_content=DAG1r7xKEjw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+       style="color: #ffffff; text-decoration: none; font-weight: 600; font-family: 'Open Sans', sans-serif; font-size: 1.1rem;">
+       🔗 Ver presentación de sitio web actualizado en Canva
+
+ <section id="SITIO WEB TERMINADO" style="padding: 100px 0; display: max; justify-content: center;">
+  <div class="rectangulo-rosa-ancho" 
+       style="background-color: hsl(336, 100%, 62%); color: white; font-weight: bold; padding: 15px 20px; border-radius: 8px; font-family: 'Open Sans', sans-serif; text-align: center;">
+    SITIO WEB TERMINADO
+
+        <!-- Espacio para el enlace Sitio web -->
+  <div style="margin-top: 20px; text-align: center;">
+    <a href=https://leticiab23.github.io/P-ginawebAura3/
+       style="color: #ffffff; text-decoration: none; font-weight: 600; font-family: 'Open Sans', sans-serif; font-size: 1.1rem;">
+       🔗 Ver sitio web 
+
+        <!-- Espacio para el enlace Pitch -->
+  <div style="margin-top: 20px; text-align: center;">
+    <a href=https://www.youtube.com/watch?v=TFLwwvD_KlU
+       style="color: #ffffff; text-decoration: none; font-weight: 600; font-family: 'Open Sans', sans-serif; font-size: 1.1rem;">
+       🔗 Ver Pitch
+
+
+
+  <footer>
+    <div class="footer-container">
+      <p>2025 Mi Sitio Web | Todos los derechos reservados</p>
+      <div class="footer-icons">
+        <i data-feather="instagram"></i>
+        <i data-feather="facebook"></i>
+        <i data-feather="mail"></i>
+      </div>
+    </div>
+ 
+
+     <!-- Contacto -->
+    <section id="contacto" class="contacto">
+    <div class="dato">
+    </div>
+    <form class="contacto-form">
+    <div class="form-group">
+    <input type="text" placeholder="Tu nombre" required>
+    </div>
+    <div class="form-group">
+    <input type="email" placeholder="Tu email" required>
+    </div>
+    <button class="btn-enviar">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20px" height="20px" style="margin-right:8px;">
+    <path d="M12 13.5l8-6.5H4l8 6.5zm0 1.5l-8-6.5v8.5h16v-8.5l-8 6.5z"/>
+  </svg>
+  Enviar mensaje
+</button>
+    </form>
+    </div>
+    </div>
+    </section>
+    
+
+ <div id="cookieBanner" class="cookie-banner" role="region" aria-label="Aviso de cookies" hidden>
+ <div class="cookie-info">
+ <p class="cookie-title">Usamos cookies</p>
+ <p class="cookie-desc">Utilizamos cookies para mejorar tu experiencia y analizar el tráfico. Puedes aceptar todas las cookies o rechazarlas. Puedes cambiar tu elección en cualquier momento.</p>
+ </div>
+ <div class="cookie-actions" role="group" aria-label="Acciones de cookies">
+ <button id="btnReject" class="btn-secondary" aria-label="Rechazar cookies">Rechazar</button>
+ <button id="btnSettings" class="btn-secondary" aria-label="Ajustes de cookies">Ajustes</button>
+ <button id="btnAccept" class="btn-primary" aria-label="Aceptar cookies" style="background-color: #ff0084;">Aceptar</button>
+ </div>
+ </div>
+
+ <button id="openSettings" class="cookie-settings-btn" aria-haspopup="dialog" aria-controls="cookieModal">Ajustes de cookies</button>
+
+ <div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal" role="document">
+ <h2 id="modalTitle">Preferencias de cookies</h2>
+ <p class="cookie-desc">Elige qué tipos de cookies permites.</p>
+
+ <div style="margin-top:12px">
+ <div class="pref-row">
+ <div>
+ <div style="font-weight:600">Necesarias</div>
+ <div class="pref-desc">Cookies esenciales para el funcionamiento del sitio.</div>
+ </div>
+  <div>
+ <div class="switch on" data-key="necessary" aria-hidden="true"><div class="knob"></div></div>
+ </div>
+ </div>
+
+ <div class="pref-row">
+ <div>
+ <div style="font-weight:600">Analíticas</div>
+ <div class="pref-desc">Permiten medir visitas y comportamiento (ej. Google Analytics).</div>
+ </div>
+ <div>
+ <div class="switch" data-key="analytics" tabindex="0" role="button" aria-pressed="false"><div class="knob"></div></div>
+ </div>
+ </div>
+
+ <div class="pref-row">
+ <div>
+ <div style="font-weight:600">Publicidad</div>
+ <div class="pref-desc">Personalización de anuncios (no necesaria para el sitio).</div>
+ </div>
+ <div>
+ <div class="switch" data-key="marketing" tabindex="0" role="button" aria-pressed="false"><div class="knob"></div></div>
+ </div>
+ </div>
+
+ <div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end">
+ <button id="savePrefs" class="btn-primary">Guardar preferencias</button>
+ <button id="cancelPrefs" class="btn-secondary">Cancelar</button>
+ </div>
+
+ <div class="overlay">
+    <div class="cookie-container">
+      <h1>🍪 Aviso de Cookies</h1>
+      <p>
+        Usamos cookies para mejorar tu experiencia en nuestro sitio web. Al aceptar, nos ayudas a ofrecerte contenido más relevante y personalizado.
+      </p>
+      <button class="cookie-button">Aceptar Cookies</button>
+    </div>
+
+ 
+
+
+ <script>
+
+// *Configuración de cokies* //
+const COOKIE_NAME = 'site_cookie_consent';
+const COOKIE_EXPIRE_DAYS = 365;
+
+// *Helpers* // 
+function setCookie(name, value, days){ const d = new Date();
+  d.setTime(d.getTime() + (days*24*60*60*1000));
+document.cookie = name + '=' + encodeURIComponent(value) + ';path=/;SameSite=Lax;expires=' + d.toUTCString();
+}
+function getCookie(name){
+const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'); return v ? decodeURIComponent(v.pop()) : null;
+}
+
+function saveConsent(obj){
+   setCookie(COOKIE_NAME, JSON.stringify(obj), COOKIE_EXPIRE_DAYS);
+}
+function readConsent(){
+const raw = getCookie(COOKIE_NAME);
+try{ return raw ? JSON.parse(raw) : null }catch(e){return null}
+}
+
+function loadAnalyticsIfAllowed(){
+  const consent = readConsent();
+  if(consent && consent.analytics){
+    // Ejemplo de carga condicional de script (reemplaza con tu propio tracking)
+    if(!document.getElementById('analytics-script')){
+      const s = document.createElement('script');
+      s.id = 'analytics-script';
+      s.async = true;
+      // s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX'; // activar si corresponde
+      s.text = "/* Aquí podrías inicializar tu analytics de forma condicional */\nconsole.log('Analytics cargado (simulado).');";
+      document.head.appendChild(s);
+    } 
+  }
+}
+
+// ===== *UI* //
+const banner = document.getElementById('cookieBanner');
+const overlay = document.getElementById('overlay');
+const openSettingsBtn = document.getElementById('openSettings');
+const btnAccept = document.getElementById('btnAccept');
+const btnReject = document.getElementById('btnReject');
+const btnSettings = document.getElementById('btnSettings');
+const savePrefs = document.getElementById('savePrefs');
+const cancelPrefs = document.getElementById('cancelPrefs');
+
+function showBanner(){ banner.hidden = false; }
+function hideBanner(){ banner.hidden = true; }
+
+function openModal(){ overlay.classList.add('open'); overlay.querySelector('.modal').focus(); }
+function closeModal(){ overlay.classList.remove('open'); }
+
+// Initialize switches based on data-key
+function setSwitchesFromConsent(consent){
+ document.querySelectorAll('.switch').forEach(sw =>{
+ const key = sw.dataset.key;
+ if(!key) return; // necessary has no key (it's on by default)
+ const on = consent ? !!consent[key] : false;
+ if(on) sw.classList.add('on'); else sw.classList.remove('on');
+ sw.setAttribute('aria-pressed', on ? 'true' : 'false');
+ });
+}
+
+// Toggle handler
+document.querySelectorAll('.switch').forEach(sw =>{
+ sw.addEventListener('click', () =>{
+ if(sw.dataset.key === 'necessary') return; // no toggle
+ sw.classList.toggle('on');
+ const pressed = sw.classList.contains('on');
+ sw.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+ });
+ sw.addEventListener('keydown', (e)=>{
+ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sw.click(); }
+ });
+});
+
+// Botones principales
+btnAccept.addEventListener('click', ()=>{
+ const pref = {necessary:true, analytics:true, marketing:true};
+ saveConsent(pref);
+ hideBanner();
+ loadAnalyticsIfAllowed();
+});
+
+btnReject.addEventListener('click', ()=>{
+ const pref = {necessary:true, analytics:false, marketing:false};
+ saveConsent(pref);
+ hideBanner();
+ // No cargamos analytics
+});
+
+btnSettings.addEventListener('click', ()=>{ openModal(); });
+openSettingsBtn.addEventListener('click', ()=>{ openModal(); });
+
+// Guardar preferencias desde modal
+savePrefs.addEventListener('click', ()=>{
+ const consent = {necessary:true};
+ document.querySelectorAll('.switch').forEach(sw =>{
+ const key = sw.dataset.key;
+ if(!key) return;
+ consent[key] = sw.classList.contains('on');
+ });
+ saveConsent(consent);
+ closeModal();
+ hideBanner();
+ loadAnalyticsIfAllowed();
+});
+
+cancelPrefs.addEventListener('click', ()=>{ closeModal(); });
+
+// Cerrar modal si se hace click fuera
+overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
+
+// Inicialización al cargar la página
+(function initConsent(){
+ const consent = readConsent();
+ if(!consent){
+ // sin decisión -> mostrar banner
+ showBanner();
+ } else {
+ // ya existe preferencia -> no mostrar
+ hideBanner();
+ }
+ setSwitchesFromConsent(consent);
+ loadAnalyticsIfAllowed();
+})();
+
+  // Crear partículas animadas
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Tamaño aleatorio
+        const size = Math.random() * 10 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Posición inicial aleatoria
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100 + 100}%`;
+        
+        // Retraso de animación aleatorio
+        particle.style.animationDelay = `${Math.random() * 15}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    // Inicializar partículas cuando se carga la página
+    document.addEventListener('DOMContentLoaded', createParticles);
+
+</script>
+ </footer>
+</body>
+</html>
